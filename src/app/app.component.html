@@ -1,0 +1,32 @@
+<br><br>
+<div class="container">
+  <div style="text-align:center">
+    <h1>Welcome to Prueba!!</h1>
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label for="name" class="center-block"
+          >Nombre:
+          <input type="text" class="form-control" formControlName="name" required/>
+        </label>
+      </div>
+      <div *ngIf="
+      angForm.controls['name'].invalid && angForm.controls['name'].errors &&
+      (angForm.controls['name'].dirty || angForm.controls['name'].touched)
+    "
+        class="alert alert-danger"
+      >
+        <div *ngIf="angForm.controls['name'].errors?.required">
+          Name is required.
+        </div>
+        <div *ngIf="angForm.controls['name'].errors?.minlength">
+          Name must be at least 4 characters long.
+        </div>
+        <div *ngIf="angForm.controls['name'].errors?.maxlength">
+          Name must be less than 10 characters long.
+        </div>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary" [disabled]="angForm.invalid">Go</button>
+    </form>
+  </div>
+</div>
